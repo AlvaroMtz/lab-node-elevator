@@ -8,11 +8,11 @@ class Elevator {
   }
 
   start() {
-    setInterval(() => this.update(), 1000);
+    var intervalID= setInterval(() => this.update(), 1000);
   }
 
-  stop(interval) { 
-    clearInterval(interval);
+  stop(ID) { 
+    clearInterval(intervalID);
   }
 
   update() { 
