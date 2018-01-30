@@ -8,6 +8,12 @@ const Daniel = new Person('Daniel', 10 , 0);
 const Alejandro = new Person('Alejandro', 6, 10);
 
 elevator.start();
+elevator.call(Juan)
+elevator.call(Carlos)
+elevator.call(Abel)
+elevator.call(Daniel)
+elevator.call(Alejandro)
+elevator.stop();
 
 
 

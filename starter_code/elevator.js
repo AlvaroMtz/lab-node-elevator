@@ -5,14 +5,16 @@ class Elevator {
     this.MINFLOOR   = 0;
     this.requests   = [];
     this.directionUp = true;
+    this.passengers = [];
+    this.waitingList = [];
   }
 
   start() {
-    var intervalID= setInterval(() => this.update(), 1000);
+    setInterval(() => this.update(), 1000);
   }
 
-  stop(ID) { 
-    clearInterval(intervalID);
+  stop(interval) { 
+    clearInterval(interval);
   }
 
   update() { 
@@ -21,9 +23,27 @@ class Elevator {
     this.floorDown();
   }
 
-  _passengersEnter() { }
+  _passengersEnter() { 
+    this.waitingList.forEach(function(e, i){
+      if(e[i].destinationFloor == this.floor){
+        this.passenger.push(this.waitingList[i])
+        this.requests.push(this.waitingList[i].destinationFloor)
+        console.log(`${this.waitingList[i].name} has enter the elevator`)
+        this.waitingList.splice(i, 1);
+      }
+     })
+  }
 
-  _passengersLeave() { }
+  _passengersLeave() { 
+    this.waitingList.forEach(function(e, i){
+      if(e[i].destinationFloor == this.floor){
+        this.passenger.push(this.waitingList[i])
+        this.requests.push(this.waitingList[i].destinationFloor)
+        console.log(`${this.waitingList[i].name} has enter the elevator`)
+        this.waitingList.splice(i, 1);
+      }
+     })
+  }
 
   floorUp() {
     if(this.directionUp && this.floor < this.MAXFLOOR){
@@ -41,12 +61,15 @@ class Elevator {
     }
    }
 
-  call() { }
+  call(person) { 
+    this.requests.push(person.originfloor);
+    this.waitingList.push(person);
+  }
 
   log() {
     let direction = this.directionUp? "Up" : "Down";
 
-    console.log("Direction: " + direction + "| Floor: " + this.floor);
+    console.log("Direction: " + direction + " | Floor: " + this.floor);
    }
 }
 
